@@ -49,7 +49,7 @@ html, body, h1 {
   padding: 4px;
   margin: -6px 0 0 -6px;
   border-radius: 50%;
-  background: cornflowerblue;
+  background: gray;
   border: 2px #fff solid;
   z-index: -1;
   animation: bounce2 2s linear infinite; }
@@ -99,27 +99,27 @@ html, body, h1 {
   0% {
     top: -35px;
     left: 10px;
-    border: 2px cornflowerblue solid; }
+    border: 2px gray solid; }
   24% {
-    border: 2px cornflowerblue solid; }
+    border: 2px gray solid; }
   25% {
     top: 25px;
     left: 225px;
     border: 2px #fff solid; }
   49% {
-    border: 2px cornflowerblue solid; }
+    border: 2px gray solid; }
   50% {
     top: 75px;
     left: 10px;
     border: 2px #fff solid; }
   74% {
-    border: 2px cornflowerblue solid; }
+    border: 2px gray solid; }
   75% {
     top: -35px;
     left: 225px;
     border: 2px #fff solid; }
   99% {
-    border: 2px cornflowerblue solid; }
+    border: 2px gray solid; }
   100% {
     top: -35px;
     left: 10px;
@@ -152,7 +152,6 @@ html, body, h1 {
 
 #game {
   padding-bottom: 3em;
-  margin: 0 auto;
   text-align: center;
   padding-bottom: 15em;
   padding-top: 15em; }
