@@ -1,46 +1,29 @@
-'use strict';
-$('#sec_one').hide();
-var Router = Backbone.Router.extend({
-	routes: {
-		'load' : 'load',
-		'menu' : 'menu',
-		'game': 'game',
-		'leaders': 'leaders',
-		'settings': 'settings'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, hashHistory} from 'react-router';
+import LeaderBoardComponent from './components/LeaderBoardComponent';
+import LoadingComponent from './components/LoadingComponent';
+import MenuComponent from './components/MenuComponent';
+import PauseGameComponent from './components/PauseGameComponent';
+import SettingsComponent from './components/SettingsComponent';
+import GameComponent from './components/GameComponent';
 
-	},
-	load: function(){
-		$('section').hide();
-		$('#load').show();
-	},
-	menu: function(){
-		$('section').hide();
-		$('#menu').show();
-	},
-	game: function(){
-		$('section').hide();
-		$('#game').show();
-	},
-	leaders: function(){
-		$('section').hide();
-		$('#leaders').show();
-	},
-	settings: function(){
-		$('section').hide();
-		$('#settings').show();
-	}
+const router = (
+	<Router history={hashHistory}>
+		<Route path="/" component={LoadingComponent} />
+		<Route path="/menu" component={MenuComponent} />
+		<Route path="/game" component={GameComponent} />
+		<Route path="/pauseGame" component={PauseGameComponent} />
+		<Route path="/leaders" component={LeaderBoardComponent} />
+		<Route path="/settings" component={SettingsComponent} />
+	</Router>
+);
 
-
-});
-
-var page = new Router();
-Backbone.history.start();
-
-
-window.onload =function(){
-		page.navigate('load', {trigger: true});
+window.onload = function(){
+		hashHistory.push('/');
 	window.setTimeout(function(){
-		page.navigate('menu', {trigger:true})
-	}, 4000);
-
-}
+		hashHistory.push('/menu');
+	}, 1000);
+};
+console.log('hi');
+ReactDOM.render(router, document.querySelector('.main'));

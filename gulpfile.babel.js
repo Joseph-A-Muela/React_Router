@@ -1,4 +1,3 @@
-'use strict';
 var watchify = require('watchify');
 var browserify = require('browserify');
 var gulp = require('gulp');
@@ -19,11 +18,18 @@ var customOpts = {
 	debug: true
 };
 var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts).transform(babelify));
-
-gulp.task('js-bundle', bundle); // so you can run `gulp js` to build the file
+var b = browserify(opts);
+b.plugin(watchify, {
+	poll: true,
+	sourceType: 'module'
+});
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
+b.transform(babelify, {presets:['es2015', 'react']});
+// var b = watchify(browserify(opts).transform(babelify));
+
+gulp.task('js-bundle', bundle); // so you can run `gulp js` to build the file
+
 
 gulp.task('webserver', function() {
 	gulp.src('./')

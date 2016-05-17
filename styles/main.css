@@ -4,15 +4,15 @@ html, body, h1 {
   background: black;
   color: gray; }
 
-#loadPage {
+#load {
   text-align: center;
   background: black; }
 
 .text {
   color: gray;
   text-align: center;
-  font-size: 6em;
-  padding-top: 2em; }
+  font-size: 4em;
+  margin-top: 10em; }
 
 .board {
   position: absolute;
@@ -66,7 +66,6 @@ html, body, h1 {
     top: -60px; }
   100% {
     top: -60px; } }
-
 @keyframes position2 {
   0% {
     top: 60px; }
@@ -78,7 +77,6 @@ html, body, h1 {
     top: -60px; }
   100% {
     top: 60px; } }
-
 @keyframes bounce {
   0% {
     top: -35px;
@@ -95,7 +93,6 @@ html, body, h1 {
   100% {
     top: -35px;
     left: 10px; } }
-
 @keyframes bounce2 {
   0% {
     top: -35px;
@@ -125,7 +122,6 @@ html, body, h1 {
     top: -35px;
     left: 10px;
     border: 2px #fff solid; } }
-
 .credit {
   position: absolute;
   bottom: 0;
@@ -141,56 +137,34 @@ html, body, h1 {
 .credit a {
   color: #fff; }
 
-#menu, #setting, #game, #leaders {
+#menu, #setting, #game {
   font-family: Coda, Arial, sans-serif;
   color: gray;
-  text-align: center;
-  margin: 0 auto;
-  position: relative;
-  top: 60%;
-  right: 1%; }
+  text-align: center; }
 
 #menu {
-  padding-top: 7em;
-  text-align: center;
-  font-size: 2em; }
-  #menu h1 {
-    font-size: 1.6em; }
+  padding-bottom: 15em;
+  padding-top: 15em;
+  text-align: center; }
 
 #game {
+  padding-bottom: 3em;
   text-align: center;
-  margin: 0 auto;
-  font-size: 1em;
-  padding-top: 6em;
-  font-size: 2em; }
-  #game h1 {
-    color: white; }
+  padding-bottom: 15em;
+  padding-top: 15em; }
 
 #leaders {
   text-align: center;
-  margin: 0 auto;
-  color: gray;
-  font-size: 2em;
-  padding-top: 1.5em; }
+  padding-bottom: 10em;
+  padding-top: 10em;
+  color: white; }
   #leaders h1 {
-    color: white;
-    font-size: 1.5em;
-    text-decoration: underline;
-    padding-bottom: .8em; }
+    padding-bottom: 1em; }
 
 #settings {
   text-align: center;
-  margin: 0 auto;
-  font-size: 2em;
-  padding-top: 3.8em; }
-  #settings h1 {
-    color: white;
-    font-size: 1.5em;
-    text-decoration: underline; }
-
-#playGame {
-  color: white;
-  font-size: 4em; }
+  padding-bottom: 15em;
+  padding-top: 15em; }
 
 ol {
   margin: 0;
@@ -206,3 +180,5 @@ a {
   color: #D3D3D3;
   text-decoration: none;
   display: block; }
+
+/*# sourceMappingURL=main.css.map */
