@@ -24888,133 +24888,6 @@ module.exports = warning;
 }).call(this,require('_process'))
 
 },{"_process":49}],229:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) {
-	return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var Loop = function Loop(func) {
-	(function loop(time) {
-		func(Math.min((Date.now() - time) / 1000, 1));
-		window.requestAnimationFrame(loop.bind(null, Date.now()));
-	})(Date.now());
-};
-
-var GameComponent = _react2.default.createClass({
-	displayName: 'GameComponent',
-
-	getInitialState: function getInitialState() {
-		return {
-			ball: {
-				y: Math.floor(Math.random() * 19),
-				x: Math.floor(Math.random() * 14),
-				vx: 5 * (Math.random() < 0.5 ? 1 : -1),
-				vy: 4 * (Math.random() < 0.5 ? 1 : -1)
-			},
-			score: {
-				left: 0,
-				right: 0
-			},
-			paddle: {
-				left: {
-					x: 0.15,
-					y: 5
-				},
-				right: {
-					x: 19 - 0.15,
-					y: 7
-				}
-			}
-		};
-	},
-	render: function render() {
-		return _react2.default.createElement('div', { id: 'playGame' }, _react2.default.createElement(Pongscore, { position: 'left', score: this.state.score.left }), _react2.default.createElement(Pongscore, { position: 'right', score: this.state.score.right }), _react2.default.createElement(Pongpaddle, { paddle: this.state.paddle.left }), _react2.default.createElement(Pongpaddle, { paddle: this.state.paddle.right }), _react2.default.createElement(Pongball, { ball: this.state.ball }));
-	},
-	componentDidMount: function componentDidMount() {
-		Loop(function (tick) {
-			this.state.ball.x += this.state.ball.vx * tick;
-			this.state.ball.y += this.state.ball.vy * tick;
-			if (this.state.ball.x > 19) {
-				this.state.ball.vx *= -1;
-			} else if (this.state.ball.x < 0) {
-				this.state.ball.vx *= -1;
-			}
-			if (this.state.ball.y > 14) {
-				this.state.ball.vy *= -1;
-			} else if (this.state.ball.y < 0) {
-				this.state.ball.vy *= -1;
-			}
-			this.forceUpdate();
-		}.bind(this));
-	}
-});
-
-var Pongball = _react2.default.createClass({
-	displayName: 'Pongball',
-
-	render: function render() {
-		var style = {
-			width: '1em',
-			height: '1em',
-			top: this.props.ball.y + 'em',
-			left: this.props.ball.x + 'em',
-			position: 'absolute',
-			backgroundColor: 'red',
-			borderRadius: '.5em'
-		};
-		return _react2.default.createElement('div', { style: style });
-	}
-});
-
-var Pongpaddle = _react2.default.createClass({
-	displayName: 'Pongpaddle',
-
-	render: function render() {
-		var style = {
-			width: '.5em',
-			height: '4em',
-			position: 'absolute',
-			left: this.props.paddle.x + 'em',
-			top: this.props.paddle.y + 'em',
-			backgroundColor: 'white'
-		};
-		return _react2.default.createElement('div', { onMouseMove: this.movePaddle, style: style });
-	},
-	movePaddle: function movePaddle(event) {
-		// this.props.paddle.y =
-	}
-});
-
-var Pongscore = _react2.default.createClass({
-	displayName: 'Pongscore',
-
-	render: function render() {
-		var style = {
-			fontSize: '1.4em',
-			position: 'absolute',
-			top: '.1em'
-		};
-		if (this.props.position == 'left') {
-			style.left = '1em';
-		} else if (this.props.position == 'right') {
-			style.right = '1em';
-		}
-		return _react2.default.createElement('div', { style: style }, this.props.score);
-	}
-});
-
-exports.default = GameComponent;
-
-},{"react":226}],230:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25039,7 +24912,7 @@ var LeaderBoardComponent = _react2.default.createClass({
 
 exports.default = LeaderBoardComponent;
 
-},{"react":226}],231:[function(require,module,exports){
+},{"react":226}],230:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25064,7 +24937,7 @@ var LoadingComponent = _react2.default.createClass({
 
 exports.default = LoadingComponent;
 
-},{"react":226}],232:[function(require,module,exports){
+},{"react":226}],231:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25089,7 +24962,7 @@ var MenuComponent = _react2.default.createClass({
 
 exports.default = MenuComponent;
 
-},{"react":226}],233:[function(require,module,exports){
+},{"react":226}],232:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25114,7 +24987,7 @@ var PauseGameComponent = _react2.default.createClass({
 
 exports.default = PauseGameComponent;
 
-},{"react":226}],234:[function(require,module,exports){
+},{"react":226}],233:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25139,7 +25012,7 @@ var SettingsComponent = _react2.default.createClass({
 
 exports.default = SettingsComponent;
 
-},{"react":226}],235:[function(require,module,exports){
+},{"react":226}],234:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -25172,26 +25045,22 @@ var _SettingsComponent = require('./components/SettingsComponent');
 
 var _SettingsComponent2 = _interopRequireDefault(_SettingsComponent);
 
-var _GameComponent = require('./components/GameComponent');
-
-var _GameComponent2 = _interopRequireDefault(_GameComponent);
-
 function _interopRequireDefault(obj) {
 	return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var router = _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory }, _react2.default.createElement(_reactRouter.Route, { path: '/', component: _LoadingComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/menu', component: _MenuComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/game', component: _GameComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/pauseGame', component: _PauseGameComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/leaders', component: _LeaderBoardComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/settings', component: _SettingsComponent2.default }));
+var router = _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory }, _react2.default.createElement(_reactRouter.Route, { path: '/', component: _LoadingComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/menu', component: _MenuComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/pauseGame', component: _PauseGameComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/leaders', component: _LeaderBoardComponent2.default }), _react2.default.createElement(_reactRouter.Route, { path: '/settings', component: _SettingsComponent2.default }));
 
 window.onload = function () {
 	_reactRouter.hashHistory.push('/');
 	window.setTimeout(function () {
 		_reactRouter.hashHistory.push('/menu');
-	}, 1000);
+	}, 5000);
 };
 console.log('hi');
 _reactDom2.default.render(router, document.querySelector('.main'));
 
-},{"./components/GameComponent":229,"./components/LeaderBoardComponent":230,"./components/LoadingComponent":231,"./components/MenuComponent":232,"./components/PauseGameComponent":233,"./components/SettingsComponent":234,"react":226,"react-dom":51,"react-router":81}]},{},[235])
+},{"./components/LeaderBoardComponent":229,"./components/LoadingComponent":230,"./components/MenuComponent":231,"./components/PauseGameComponent":232,"./components/SettingsComponent":233,"react":226,"react-dom":51,"react-router":81}]},{},[234])
 
 
 //# sourceMappingURL=bundle.js.map

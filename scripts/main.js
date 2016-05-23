@@ -6,13 +6,11 @@ import LoadingComponent from './components/LoadingComponent';
 import MenuComponent from './components/MenuComponent';
 import PauseGameComponent from './components/PauseGameComponent';
 import SettingsComponent from './components/SettingsComponent';
-import GameComponent from './components/GameComponent';
 
 const router = (
 	<Router history={hashHistory}>
 		<Route path="/" component={LoadingComponent} />
 		<Route path="/menu" component={MenuComponent} />
-		<Route path="/game" component={GameComponent} />
 		<Route path="/pauseGame" component={PauseGameComponent} />
 		<Route path="/leaders" component={LeaderBoardComponent} />
 		<Route path="/settings" component={SettingsComponent} />
@@ -23,7 +21,7 @@ window.onload = function(){
 		hashHistory.push('/');
 	window.setTimeout(function(){
 		hashHistory.push('/menu');
-	}, 1000);
+	}, 5000);
 };
 console.log('hi');
 ReactDOM.render(router, document.querySelector('.main'));

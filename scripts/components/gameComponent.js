@@ -33,13 +33,18 @@ const GameComponent = React.createClass ({
 		};
 	},
     render: function() {
+    	let style = {
+    		width: '100%',
+    		height: '100%',
+    		border: 'dotted .1em white'
+    	};
         return(
-            <div id='playGame'>
-            	<Pongscore position={'left'} score={this.state.score.left} />
-            	<Pongscore position={'right'} score={this.state.score.right} />
-            	<Pongpaddle paddle={this.state.paddle.left} />
-            	<Pongpaddle paddle={this.state.paddle.right} />
-            	<Pongball ball= {this.state.ball} />
+            <div id='playGame' style={style} >
+            	<PongScore position={'left'} score={this.state.score.left} />
+            	<PongScore position={'right'} score={this.state.score.right} />
+            	<PongPaddle paddle={this.state.paddle.left} />
+            	<PongPaddle paddle={this.state.paddle.right} />
+            	<PongBall ball= {this.state.ball} />
             </div>
         );
     },
@@ -47,14 +52,34 @@ const GameComponent = React.createClass ({
     	Loop( function(tick) {
     		this.state.ball.x += this.state.ball.vx * tick;
     		this.state.ball.y += this.state.ball.vy * tick;
-    		if(this.state.ball.x > 19) {
-    			this.state.ball.vx *= -1;
-    		} else if(this.state.ball.x < 0) {
+    		if(this.state.ball.vx > 0
+    		&& this.state.ball.x > 19 - 1
+    		&& this.state.ball.y > this.state.paddles.right.y - 2
+    		&& this.state.ball.y < this.state.paddles.right.y + 2 ) {
     			this.state.ball.vx *= -1;
     		}
-    		if (this.state.ball .y > 14) {
+    		if(this.state.ball.vx < 0
+    		&& this.state.ball.x < 0 + 1
+    		&& this.state.ball.y > this.state.paddles.left.y - 2
+    		&& this.state.ball.y < this.state.paddles.left.y + 2 ) {
+    			this.state.ball.vx *= -1;
+    		}
+    		if(this.state.ball.vx > 0
+    		&& this.state.ball.x > 19) {
+    			this.state.ball.vx *= -1;
+    			this.state.ball.score.left++;
+    		}
+    		if(this.state.ball.vy < 0
+    		&& this.state.ball.x < 0) {
+    			this.state.ball.vx *= -1;
+    			this.state.score.right++;
+    		}
+    		if(this.state.ball.vy > 0
+    		&& this.state.ball.y > 14) {
     			this.state.ball.vy *= -1;
-    		}else if(this.state.ball.y < 0) {
+    		}
+    		if(this.state.ball.vy < 0
+    		&& this.state.ball.y < 0) {
     			this.state.ball.vy *= -1;
     		}
     		this.forceUpdate();
@@ -62,11 +87,11 @@ const GameComponent = React.createClass ({
     }
 });
 
-const Pongball = React.createClass ({
+const PongBall = React.createClass ({
 	render: function() {
 		let style = {
-				width: '1em',
-				height: '1em',
+				width: '.8em',
+				height: '.8em',
 				top: this.props.ball.y + 'em',
 				left: this.props.ball.x + 'em',
 				position: 'absolute',
@@ -79,7 +104,7 @@ const Pongball = React.createClass ({
 	}
 });
 
-const Pongpaddle = React.createClass({
+const PongPaddle = React.createClass({
 	render: function() {
 		let style = {
 			width: '.5em',
@@ -90,15 +115,15 @@ const Pongpaddle = React.createClass({
 			backgroundColor: 'white'
 		};
 		return(
-			<div onMouseMove={this.movePaddle} style={style} />
+			<div style={style} onMouseMove={this.movePaddle} />
 		);
 	},
 	movePaddle: function(event) {
-		// this.props.paddle.y =
+		this.props.paddle.y = event.clientY / window.getSizeOfEms() - 2;
 	}
 });
 
-const Pongscore = React.createClass({
+const PongScore = React.createClass({
 	render: function() {
 		let style = {
 			fontSize: '1.4em',
